@@ -8,5 +8,7 @@ namespace Lemonade_Stand
 {
     class Weather
     {
+        public string WeatherForecast;
+        public int Temperature;
     }
 }

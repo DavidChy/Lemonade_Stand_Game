@@ -8,5 +8,8 @@ namespace Lemonade_Stand
 {
     class Inventory
     {
+        public string lemon;
+        public string sugar;
+        public string water;
     }
 }

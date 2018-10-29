@@ -8,5 +8,14 @@ namespace Lemonade_Stand
 {
     class Player
     {
+        public Inventory inventory;
+        public Recipe recipe;
+        
+        public Player()
+        {
+            this.inventory = new Inventory();
+            this.recipe = new Recipe();
+        }
     }
+    // set recipe and sale price
 }

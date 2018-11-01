@@ -14,18 +14,22 @@ namespace Lemonade_Stand
         public void RunGame()
         {
             random = new Random();
-            UserInterface.DisplayRules(player1);
+            UserInterface.ShowWelcome();
             GetName();
+            UserInterface.ShowRules(player1);
+            //GetMenu();
         }
 
         private void GetName()
         {
             
             player1 = new Player("David Chy", random);
-            Console.WriteLine("We need to let the kids on the block know who has the best lemonade!");
-            Console.WriteLine("What's your street name: ");
-            player1.Name = Console.ReadLine();
             
+            Console.WriteLine("We need to let the kids on the block know who has the best lemonade!");
+            Console.WriteLine("Please enter your street name, son. And press [Enter]...");
+            player1.Name = Console.ReadLine();
+            Console.Clear();
+
         }
 
     }

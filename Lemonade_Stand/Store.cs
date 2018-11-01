@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    class Store
+    public class Store
     {
+        private Inventory inventory;
+        private Random random;
+        private Player player1;
+        private double money;
+        private int daysCount;
+
+        public Store(Random Random, Player Player1)
+        {
+            random = Random;
+            inventory = new Inventory();
+            money = 500;
+            daysCount = 1;
+            player1 = Player1;
+        }
     }
 }

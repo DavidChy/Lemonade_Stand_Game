@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    class Player
+    public class Player
     {
-        public Inventory inventory;
-        public Recipe recipe;
-        
-        public Player()
+        private string name;
+        private Store store;
+        public string Name { get { return name; } set { name = value; } }
+        public Store Store { get { return store; } }
+
+
+        public Player(string Name, Random random)
         {
-            this.inventory = new Inventory();
-            this.recipe = new Recipe();
+            name = Name;
+            store = new Store(random, this);
         }
     }
-    // set recipe and sale price
 }

@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    class Day
+    class Cup
     {
-        Weather weather = new Weather();
-        public int dayNumber = 1;
-        public int degrees = 0;
-
     }
 }

@@ -10,6 +10,9 @@ namespace Lemonade_Stand
     {
         static void Main(string[] args)
         {
+            Game lemonadeStand = new Game();
+            lemonadeStand.RunGame();
+            Console.ReadLine();
         }
     }
 }

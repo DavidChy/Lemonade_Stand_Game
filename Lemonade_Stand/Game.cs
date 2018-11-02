@@ -17,7 +17,7 @@ namespace Lemonade_Stand
             UserInterface.ShowWelcome();
             GetName();
             UserInterface.ShowRules(playerOne);
-            PickDayGame();
+            GetDayGame();
         }
 
         private void GetName()
@@ -32,24 +32,24 @@ namespace Lemonade_Stand
 
         }
 
-        private void PickDayGame()
+        private void GetGameDay()
         {
             Console.WriteLine("PICK NUMBER OF DAYS");
             Console.WriteLine("----------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine("Choose either [7] day or [30] day game.");
-            getGame = Console.ReadLine();
-            if(getGame == "7")
+            gameDay = Console.ReadLine();
+            if(gameDay == "7")
             {
                 SevenDayGame();
             }
-            else if(getGame == "30")
+            else if(gameDay == "30")
             {
                 ThirtyDayGame();
             }
-            if(getGame != "7" && getGame != "30")
+            if(gameDay != "7" && gameDay != "30")
             {
                 Console.WriteLine("Invalid input. Please enter either [7] or [30].");
-                PickDayGame();
+                GetGameDay();
             }
         }
 
@@ -57,15 +57,15 @@ namespace Lemonade_Stand
         {
             while(playerOne.Store.Day != 8)
             {
-                if (player1.Store.DaysOpen == 1)
+                if (playerOne.Store.DayCount == 1)
                 {
                     Console.WriteLine();
-                    RunOneDay();
+                    StartDay();
                 }
-                else if (player1.Store.Money >= 0 && player1.Store.Inventory.Cups != 0)
+                else if (playerOne.Store.Money >= 0 && playerOne.Store.Inventory.Cups != 0)
                 {
                     Console.WriteLine();
-                    RunOneDay();
+                    StartDay();
                 }
                 else
                 {
@@ -76,5 +76,26 @@ namespace Lemonade_Stand
             RequestNewGame();
         }
 
-    }
+        private void ThirtyDayGame()
+        {
+            while (playerOne.Store.DayCount != 22)
+            {
+                if (playerOne.Store.DayCount == 1)
+                {
+                    Console.WriteLine();
+                    StartDay();
+                }
+                else if (playerOne.Store.Money >= 0 && playerOne.Store.Inventory.Cups != 0)
+                {
+                    Console.WriteLine();
+                    StartDay();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            UserInterface.DisplayEndResults(31, player1, 30);
+            RequestNewGame();
+        }
 }

@@ -10,7 +10,7 @@ namespace Lemonade_Stand
     {
         private Inventory inventory;
         private Random random;
-        private Player player1;
+        private Player playerOne;
         private double money;
         private int daysCount;
 
@@ -20,7 +20,7 @@ namespace Lemonade_Stand
             inventory = new Inventory();
             money = 500;
             daysCount = 1;
-            player1 = Player1;
+            playerOne = Player1;
         }
     }
 }

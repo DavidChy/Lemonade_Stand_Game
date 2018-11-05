@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    public class Cup
+    public class Cup : Commodity
     {
+        public static double price = 0.05;
+
+        public Cup() :
+            base("cup")
+        {
+        }
     }
 }
+

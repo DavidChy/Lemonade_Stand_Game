@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    class Commodity
+    public abstract class Commodity
     {
+        public string Name { get; set; }
+
+        public Commodity(string name)
+        {
+            this.Name = name;
+        }
     }
 }
+

@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    public class Game
+    class Game
     {
         public Player playerOne;
         public Random random;
+        public List<Day> days = new List<Day>();
+        public Weather weather;
+        private List<string> daysOfTheWeek = new List<string> { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 
         public void RunGame()
         {
@@ -17,14 +20,45 @@ namespace Lemonade_Stand
             UserInterface.ShowWelcome();
             GetName();
             UserInterface.ShowRules(playerOne);
-            GetDayGame();
+            //GetDayGame();
+            GetWeatherForecast();
+
+            double runningTotalProfit = 0;
+            int overallNumberOfCupsSold = 0;
+            foreach (Day day in days)
+            {
+                Console.WriteLine($"Today is {day.Name}.");
+                day.DisplayWeather();
+                playerOne.Lemonade.DecideRecipe();
+                playerOne.Inventory.DisplayInventory();
+                playerOne.DecideIfBuyingItems();
+
+                RunDay(day);
+
+                runningTotalProfit += day.Profit;
+                overallNumberOfCupsSold += day.NumberOfCupsSold;
+
+                UserInterface.DisplayDailyProfit(day.Profit, day.NumberOfCupsSold);
+            }
+
+            UserInterface.DisplayTotalProfit(runningTotalProfit, overallNumberOfCupsSold);
+            Console.ReadLine();
+        }
+        public Game()
+        {
+            this.weather = new Weather();
+
+            foreach (string dayName in daysOfTheWeek)
+            {
+                days.Add(new Day(dayName, this.weather));
+            }
         }
 
         private void GetName()
         {
-            
-            playerOne = new Player("David Chy", random);
-            
+
+            playerOne = new Player("David Chy");
+
             Console.WriteLine("We need to let the kids on the block know who has the best lemonade!");
             Console.WriteLine("Please enter your street name, son. And press [Enter]...");
             playerOne.Name = Console.ReadLine();
@@ -32,69 +66,82 @@ namespace Lemonade_Stand
 
         }
 
-        private void GetGameDay()
+        public void GetWeatherForecast()
         {
-            Console.WriteLine("PICK NUMBER OF DAYS");
-            Console.WriteLine("----------------------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("Choose either [7] day or [30] day game.");
-            gameDay = Console.ReadLine();
-            if(gameDay == "7")
+            Console.WriteLine("This week's weather forecast is...");
+
+            foreach (Day day in days)
             {
-                SevenDayGame();
-            }
-            else if(gameDay == "30")
-            {
-                ThirtyDayGame();
-            }
-            if(gameDay != "7" && gameDay != "30")
-            {
-                Console.WriteLine("Invalid input. Please enter either [7] or [30].");
-                GetGameDay();
+                day.DisplayWeather();
             }
         }
 
-        private void SevenDayGame()
+        private void RunDay(Day day)
         {
-            while(playerOne.Store.Day != 8)
+            double pricePerCup = UserInterface.GetPricePerCup();
+            List<Customer> customers = CreateCustomers();
+
+            int numberOfPitchersMade = 0;
+            bool haveAPitcher = playerOne.MakeAPitcher();
+
+            if (haveAPitcher)
             {
-                if (playerOne.Store.DayCount == 1)
+                numberOfPitchersMade += 1;
+            }
+
+            int remainingCupsInPitcher = 10;
+            int numberOfCupsSold = 0;
+            if (haveAPitcher)
+            {
+                for (int i = 0; i < customers.Count; i++)
                 {
-                    Console.WriteLine();
-                    StartDay();
-                }
-                else if (playerOne.Store.Money >= 0 && playerOne.Store.Inventory.Cups != 0)
-                {
-                    Console.WriteLine();
-                    StartDay();
-                }
-                else
-                {
-                    break;
+                    bool boughtLemonade = customers[i].ChanceToBuy(day, pricePerCup, i);
+                    if (boughtLemonade)
+                    {
+                        playerOne.Inventory.RemoveItems("cup", 1);
+                        numberOfCupsSold += 1;
+
+                        remainingCupsInPitcher -= 1;
+                        if (remainingCupsInPitcher == 0)
+                        {
+                            haveAPitcher = playerOne.MakeAPitcher();
+                            if (haveAPitcher)
+                            {
+                                numberOfPitchersMade += 1;
+                                remainingCupsInPitcher = 10;
+                            }
+                        }
+                    }
+
+                    if (!haveAPitcher || playerOne.Inventory.cups.Count == 0)
+                    {
+                        Console.WriteLine("You are SOLD OUT for today! You ran out of at least one item.");
+                        playerOne.Inventory.DisplayInventory();
+                        break;
+                    }
                 }
             }
-            UserInterface.DisplayEndResults(8, player1, 7);
-            RequestNewGame();
+
+            double loss = numberOfPitchersMade * playerOne.Lemonade.PriceOfPitcher() + numberOfCupsSold * Cup.price;
+            double revenue = numberOfCupsSold * pricePerCup;
+            playerOne.Money += revenue - loss;
+            day.SaveDay(revenue - loss, numberOfCupsSold);
         }
 
-        private void ThirtyDayGame()
+        private List<Customer> CreateCustomers()
         {
-            while (playerOne.Store.DayCount != 22)
+            Random random = new Random();
+            int numberOfDayCustomers = random.Next(50, 100);
+
+            List<Customer> customers = new List<Customer>();
+            for (int i = 0; i < numberOfDayCustomers; i++)
             {
-                if (playerOne.Store.DayCount == 1)
-                {
-                    Console.WriteLine();
-                    StartDay();
-                }
-                else if (playerOne.Store.Money >= 0 && playerOne.Store.Inventory.Cups != 0)
-                {
-                    Console.WriteLine();
-                    StartDay();
-                }
-                else
-                {
-                    break;
-                }
+                customers.Add(new Customer());
             }
-            
+
+            return customers;
         }
+
+        
+    }
 }

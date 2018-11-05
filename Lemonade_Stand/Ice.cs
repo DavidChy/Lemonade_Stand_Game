@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Lemonade_Stand
 {
-    class Ice
+    public class Ice : Commodity
     {
+        public static double price = 0.01;
+
+        public Ice() :
+            base("ice")
+        {
+        }
     }
 }

@@ -8,9 +8,28 @@ namespace Lemonade_Stand
 {
     class Day
     {
-        Weather weather = new Weather();
-        public int dayNumber = 1;
-        public int degrees = 0;
+        public string Name { get; set; }
+        public string Condition { get; set; }
+        public int Temperature { get; set; }
+        public double Profit { get; set; }
+        public int NumberOfCupsSold { get; set; }
 
+        public Day(string name, Weather weather)
+        {
+            this.Name = name;
+            this.Condition = weather.CreateDailyCondition();
+            this.Temperature = weather.CreateDailyTemperature();
+        }
+
+        public void DisplayWeather()
+        {
+            Console.WriteLine($"{this.Name}'s weather is {this.Temperature} and {this.Condition}.");
+        }
+
+        public void SaveDay(double profit, int numberOfCupsSold)
+        {
+            this.Profit = profit;
+            this.NumberOfCupsSold = numberOfCupsSold;
+        }
     }
 }

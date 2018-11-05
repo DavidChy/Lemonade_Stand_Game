@@ -95,7 +95,6 @@ namespace Lemonade_Stand
                     break;
                 }
             }
-            UserInterface.DisplayEndResults(31, player1, 30);
-            RequestNewGame();
+            
         }
 }

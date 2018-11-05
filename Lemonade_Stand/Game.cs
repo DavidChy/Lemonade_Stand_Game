@@ -27,7 +27,7 @@ namespace Lemonade_Stand
             int overallNumberOfCupsSold = 0;
             foreach (Day day in days)
             {
-                Console.WriteLine($"Today is {day.Name}.");
+                Console.WriteLine($"Today is {day.Name}. \n ");
                 day.DisplayWeather();
                 playerOne.Lemonade.DecideRecipe();
                 playerOne.Inventory.DisplayInventory();
@@ -68,7 +68,7 @@ namespace Lemonade_Stand
 
         public void GetWeatherForecast()
         {
-            Console.WriteLine("This next 7 day weather forecast is ");
+            Console.WriteLine("This next 7 day weather forecast is... \n");
 
             foreach (Day day in days)
             {
@@ -115,7 +115,7 @@ namespace Lemonade_Stand
 
                     if (!haveAPitcher || playerOne.Inventory.cups.Count == 0)
                     {
-                        Console.WriteLine("You are SOLD OUT at least one item for today! Or you got robbed.");
+                        Console.WriteLine("You are SOLD OUT at least one item for today! Or you got robbed. \n");
                         playerOne.Inventory.DisplayInventory();
                         break;
                     }

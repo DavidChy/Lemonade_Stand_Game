@@ -25,7 +25,7 @@ namespace Lemonade_Stand
             bool isValid = false;
             do
             {
-                Console.WriteLine($"Your current recipe needs {this.numberOfLemons} lemons, {this.numberOfSugar} sugar, and {this.numberOfIce} ice.\n" +
+                Console.WriteLine($"Your current recipe needs {this.numberOfLemons} lemons, {this.numberOfSugar} sugar, and {this.numberOfIce} ice." +
                     "Use current recipe or create a new recipe? Please enter 'current' or 'new'.");
                 string input = Console.ReadLine();
 
@@ -55,12 +55,12 @@ namespace Lemonade_Stand
             {
                 try
                 {
-                    Console.WriteLine($"How many {itemName} would you like to use for a pitcher? Please enter a value greater than 0.");
+                    Console.WriteLine($"How many {itemName} would you like to use for a pitcher? Please enter a value greater than 0." + "\n ");
                     numberOfItem = int.Parse(Console.ReadLine());
 
                     if (numberOfItem <= 0)
                     {
-                        Console.WriteLine("Please enter a number greater than 0.");
+                        Console.WriteLine("Please enter a number greater than 0." + "\n ");
                     }
                 }
                 catch (Exception)

@@ -33,7 +33,7 @@ namespace Lemonade_Stand
             Console.WriteLine("----------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine("Price and recipe should reflect on the weather and customer buying habits.");
             Console.WriteLine("Use the preset recipe and price to get a feel of it, then vary from there.");
-            Console.WriteLine("At the end of the game, you will see your financial stats. The profit or loss is your score.");
+            Console.WriteLine("At the end of the game, you will see your financial stats. The profit or loss is your score. \n\n");
             Console.WriteLine("Press [Enter] to continue...");
             Console.ReadLine();
             Console.Clear();
@@ -43,14 +43,14 @@ namespace Lemonade_Stand
             string itemName = string.Empty;
             do
             {
-                Console.WriteLine("Please choose an item: 'lemon', 'sugar', 'ice', or 'cup'.");
+                Console.WriteLine("Please choose an item: 'cup', 'ice', 'lemon', or 'sugar'.");
                 string input = Console.ReadLine().ToLower();
                 switch (input)
                 {
+                    case "cup":
+                    case "ice":
                     case "lemon":
                     case "sugar":
-                    case "ice":
-                    case "cup":
                         itemName = input;
                         break;
                     default:

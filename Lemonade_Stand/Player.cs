@@ -67,7 +67,7 @@ namespace Lemonade_Stand
 
             if (price * numberOfItems > Money)
             {
-                Console.WriteLine($"You do not have enough money to buy {numberOfItems} {itemName}. It costs ${price * numberOfItems} and you have ${Money}.");
+                Console.WriteLine($"You do not have enough money to buy {numberOfItems} {itemName}. It costs ${price * numberOfItems} and you have ${Money}");
             }
             else
             {

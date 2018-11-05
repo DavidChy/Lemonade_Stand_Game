@@ -14,9 +14,9 @@ namespace Lemonade_Stand
 
         public Lemonade()
         {
-            this.numberOfLemons = 4;
-            this.numberOfSugar = 4;
-            this.numberOfIce = 20;
+            this.numberOfLemons = 2;
+            this.numberOfSugar = 2;
+            this.numberOfIce = 5;
 
         }
 
@@ -26,24 +26,24 @@ namespace Lemonade_Stand
             do
             {
                 Console.WriteLine($"Your current recipe needs {this.numberOfLemons} lemons, {this.numberOfSugar} sugar, and {this.numberOfIce} ice.\n" +
-                    "Would you like to use this recipe or create a new recipe? Please enter 'same' or 'new'.");
+                    "Use current recipe or create a new recipe? Please enter 'current' or 'new'.");
                 string input = Console.ReadLine();
 
                 if (input == "new")
                 {
+                    this.numberOfIce = GetItemsForRecipe("ice");
                     this.numberOfLemons = GetItemsForRecipe("lemons");
                     this.numberOfSugar = GetItemsForRecipe("sugar");
-                    this.numberOfIce = GetItemsForRecipe("ice");
 
                     isValid = true;
                 }
-                else if (input == "same")
+                else if (input == "current")
                 {
                     isValid = true;
                 }
                 else
                 {
-                    Console.WriteLine("Your input was invalid. Please enter a valid response.");
+                    Console.WriteLine("Please enter a valid response.");
                 }
             } while (!isValid);
         }
@@ -65,7 +65,7 @@ namespace Lemonade_Stand
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Invalid input, please enter a valid number.");
+                    Console.WriteLine("Please enter a valid number.");
                 }
             } while (numberOfItem <= 0);
 
@@ -74,7 +74,7 @@ namespace Lemonade_Stand
 
         public void DisplayRecipe()
         {
-            Console.WriteLine($"Your current recipe requires {this.numberOfLemons} lemons, {this.numberOfSugar} sugar, and {this.numberOfIce} ice for each pitcher of lemonade.");
+            Console.WriteLine($"Your current recipe needs {this.numberOfLemons} lemons, {this.numberOfSugar} sugar, and {this.numberOfIce} ice for each pitcher of lemonade.");
         }
 
         public double PriceOfPitcher()

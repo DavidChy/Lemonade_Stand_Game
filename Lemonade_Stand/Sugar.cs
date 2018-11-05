@@ -8,7 +8,7 @@ namespace Lemonade_Stand
 {
     public class Sugar : Commodity
     {
-        public static double price = 0.10;
+        public static double price = 0.15;
 
         public Sugar() :
             base("sugar")

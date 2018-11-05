@@ -34,8 +34,9 @@ namespace Lemonade_Stand
             Console.WriteLine("Price and recipe should reflect on the weather and customer buying habits.");
             Console.WriteLine("Use the preset recipe and price to get a feel of it, then vary from there.");
             Console.WriteLine("At the end of the game, you will see your financial stats. The profit or loss is your score.");
+            Console.WriteLine("Press [Enter] to continue...");
             Console.ReadLine();
-
+            Console.Clear();
         }
         public static string GetUserItem()
         {
@@ -53,7 +54,7 @@ namespace Lemonade_Stand
                         itemName = input;
                         break;
                     default:
-                        Console.WriteLine("Please choose a valid input.");
+                        Console.WriteLine("Please enter a valid input.");
                         break;
                 }
             } while (itemName == string.Empty);
@@ -73,7 +74,7 @@ namespace Lemonade_Stand
             }
             else
             {
-                Console.WriteLine("Please enter valid input.");
+                Console.WriteLine("Please enter a valid input.");
                 return GetUserYesOrNo(prompt);
             }
         }
@@ -91,20 +92,20 @@ namespace Lemonade_Stand
                 }
                 else
                 {
-                    Console.WriteLine("Please enter a number that is greater than 0.");
+                    Console.WriteLine("Please enter a number above 0.");
                     return GetUserPositiveNumber(prompt);
                 }
             }
             catch (Exception)
             {
-                Console.WriteLine("Please enter a number that is greater than 0.");
+                Console.WriteLine("Please enter a number above 0.");
                 return GetUserPositiveNumber(prompt);
             }
         }
 
         public static double GetPricePerCup()
         {
-            Console.WriteLine("How much would you like to charge per cup of lemonade? Please enter a price that is greater than $0.00.");
+            Console.WriteLine("Set the price each cup of lemonade. Please enter a price above $0.00.");
             try
             {
                 double pricePerCup = Math.Round(double.Parse(Console.ReadLine()), 2);
@@ -114,25 +115,25 @@ namespace Lemonade_Stand
                 }
                 else
                 {
-                    Console.WriteLine("Please enter a price that is greater than $0.00.");
+                    Console.WriteLine("Please enter a price above $0.00.");
                     return GetPricePerCup();
                 }
             }
             catch (Exception)
             {
-                Console.WriteLine("Please enter a price that is greater than $0.00.");
+                Console.WriteLine("Please enter a price above $0.00.");
                 return GetPricePerCup();
             }
         }
 
         public static void DisplayDailyProfit(double profit, int numberOfCupsSold)
         {
-            Console.WriteLine($"Today you made ${profit} and sold {numberOfCupsSold} cups.");
+            Console.WriteLine($"Today, you made ${profit} and sold {numberOfCupsSold} cups.");
         }
 
         public static void DisplayTotalProfit(double runningTotalProfit, int overallNumberOfCupsSold)
         {
-            Console.WriteLine($"In your 7 days running a lemonande stand you made ${runningTotalProfit} and your stand sold {overallNumberOfCupsSold} cups of lemonade.");
+            Console.WriteLine($"In the entire 7 days, you made ${runningTotalProfit} and your stand sold {overallNumberOfCupsSold} cups of lemonade.");
         }
     }
 }

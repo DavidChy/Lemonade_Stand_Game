@@ -9,10 +9,10 @@ namespace Lemonade_Stand
     public class Inventory
     {
 
-        public List<Lemon> lemons = new List<Lemon>();
-        public List<Ice> ice = new List<Ice>();
-        public List<Sugar> sugar = new List<Sugar>();
         public List<Cup> cups = new List<Cup>();
+        public List<Ice> ice = new List<Ice>();
+        public List<Lemon> lemons = new List<Lemon>();
+        public List<Sugar> sugar = new List<Sugar>();
 
         public Inventory()
         {
@@ -24,17 +24,17 @@ namespace Lemonade_Stand
             {
                 switch (item.Name)
                 {
+                    case "cup":
+                        cups.Add((Cup)item);
+                        break;
+                    case "ice":
+                        ice.Add((Ice)item);
+                        break;
                     case "lemon":
                         lemons.Add((Lemon)item);
                         break;
                     case "sugar":
                         sugar.Add((Sugar)item);
-                        break;
-                    case "ice":
-                        ice.Add((Ice)item);
-                        break;
-                    case "cup":
-                        cups.Add((Cup)item);
                         break;
                 }
             }
@@ -64,7 +64,7 @@ namespace Lemonade_Stand
 
         public void DisplayInventory()
         {
-            Console.WriteLine($"You currently have {lemons.Count} lemons, {sugar.Count} sugar, {ice.Count} ice, and {cups.Count} cups.");
+            Console.WriteLine($"You now have {lemons.Count} lemons, {sugar.Count} sugar, {ice.Count} ice, and {cups.Count} cups.");
         }
         //private List<Cup> cupsList;
         //private List<Ice> iceList;

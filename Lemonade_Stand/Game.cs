@@ -36,9 +36,9 @@ namespace Lemonade_Stand
                 RunDay(day);
 
                 runningTotalProfit += day.Profit;
-                overallNumberOfCupsSold += day.NumberOfCupsSold;
+                overallNumberOfCupsSold += day.CupsSold;
 
-                UserInterface.DisplayDailyProfit(day.Profit, day.NumberOfCupsSold);
+                UserInterface.DisplayDailyProfit(day.Profit, day.CupsSold);
             }
 
             UserInterface.DisplayTotalProfit(runningTotalProfit, overallNumberOfCupsSold);
@@ -68,7 +68,7 @@ namespace Lemonade_Stand
 
         public void GetWeatherForecast()
         {
-            Console.WriteLine("This week's weather forecast is...");
+            Console.WriteLine("This next 7 day weather forecast is ");
 
             foreach (Day day in days)
             {
@@ -90,16 +90,16 @@ namespace Lemonade_Stand
             }
 
             int remainingCupsInPitcher = 10;
-            int numberOfCupsSold = 0;
+            int cupsSold = 0;
             if (haveAPitcher)
             {
                 for (int i = 0; i < customers.Count; i++)
                 {
-                    bool boughtLemonade = customers[i].ChanceToBuy(day, pricePerCup, i);
+                    bool boughtLemonade = customers[i].LuckOfPurchase(day, pricePerCup, i);
                     if (boughtLemonade)
                     {
                         playerOne.Inventory.RemoveItems("cup", 1);
-                        numberOfCupsSold += 1;
+                        cupsSold += 1;
 
                         remainingCupsInPitcher -= 1;
                         if (remainingCupsInPitcher == 0)
@@ -115,17 +115,17 @@ namespace Lemonade_Stand
 
                     if (!haveAPitcher || playerOne.Inventory.cups.Count == 0)
                     {
-                        Console.WriteLine("You are SOLD OUT for today! You ran out of at least one item.");
+                        Console.WriteLine("You are SOLD OUT at least one item for today! Or you got robbed.");
                         playerOne.Inventory.DisplayInventory();
                         break;
                     }
                 }
             }
 
-            double loss = numberOfPitchersMade * playerOne.Lemonade.PriceOfPitcher() + numberOfCupsSold * Cup.price;
-            double revenue = numberOfCupsSold * pricePerCup;
+            double loss = numberOfPitchersMade * playerOne.Lemonade.PriceOfPitcher() + cupsSold * Cup.price;
+            double revenue = cupsSold * pricePerCup;
             playerOne.Money += revenue - loss;
-            day.SaveDay(revenue - loss, numberOfCupsSold);
+            day.SaveDay(revenue - loss, cupsSold);
         }
 
         private List<Customer> CreateCustomers()

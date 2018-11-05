@@ -8,11 +8,11 @@ namespace Lemonade_Stand
 {
     class Day
     {
-        public string Name { get; set; }
         public string Condition { get; set; }
-        public int Temperature { get; set; }
+        public int CupsSold { get; set; }
+        public string Name { get; set; }
         public double Profit { get; set; }
-        public int NumberOfCupsSold { get; set; }
+        public int Temperature { get; set; }
 
         public Day(string name, Weather weather)
         {
@@ -26,10 +26,10 @@ namespace Lemonade_Stand
             Console.WriteLine($"{this.Name}'s weather is {this.Temperature} and {this.Condition}.");
         }
 
-        public void SaveDay(double profit, int numberOfCupsSold)
+        public void SaveDay(double profit, int CupsSold)
         {
             this.Profit = profit;
-            this.NumberOfCupsSold = numberOfCupsSold;
+            this.CupsSold = CupsSold;
         }
     }
 }

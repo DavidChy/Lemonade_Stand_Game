@@ -8,7 +8,7 @@ namespace Lemonade_Stand
 {
     class Weather
     {
-        public List<string> conditions = new List<string>() { "sunny", "hazy", "cloudy", "overcast", "rainy" };
+        public List<string> conditions = new List<string>() { "sunny", "windy", "cloudy", "rain", "snow" };
         private Random Random { get; set; }
 
         public Weather()

@@ -13,17 +13,17 @@ namespace Lemonade_Stand
         {
         }
 
-        public bool ChanceToBuy(Day day, double price, int seed)
+        public bool LuckOfPurchase(Day day, double price, int real)
         {
-            Random rand = new Random(seed);
-            int chanceToBuy = rand.Next(0, 100);
+            Random rand = new Random(real);
+            int luckOfPurchase = rand.Next(0, 100);
 
-            int totalChanceWithModifiers = 50
-                + ChanceToBuyTemperatureModifer(day.Temperature)
-                + ChanceToBuyConditionModifier(day.Condition)
-                + ChanceToBuyPriceModifier(price);
+            int totalLuck = 50
+                + LuckOfPurchaseTemperature(day.Temperature)
+                + LuckOfPurchaseCondition(day.Condition)
+                + LuckOfPurchasePrice(price);
 
-            if (chanceToBuy < totalChanceWithModifiers)
+            if (luckOfPurchase < totalLuck)
             {
                 return true;
             }
@@ -33,7 +33,7 @@ namespace Lemonade_Stand
             }
         }
 
-        public int ChanceToBuyTemperatureModifer(int temperature)
+        public int LuckOfPurchaseTemperature(int temperature)
         {
             if (temperature <= 70)
             {
@@ -49,15 +49,15 @@ namespace Lemonade_Stand
             }
         }
 
-        public int ChanceToBuyConditionModifier(string condition)
+        public int LuckOfPurchaseCondition(string condition)
         {
             switch (condition)
             {
-                case "rainy":
+                case "snow":
                     return -15;
-                case "overcast":
+                case "rain":
                     return -10;
-                case "hazy":
+                case "windy":
                     return -5;
                 case "sunny":
                     return 10;
@@ -67,21 +67,21 @@ namespace Lemonade_Stand
             }
         }
 
-        public int ChanceToBuyPriceModifier(double price)
+        public int LuckOfPurchasePrice(double price)
         {
-            if (price > 1)
+            if (price > 2.00)
             {
                 return -20;
             }
-            else if (price > 0.75)
+            else if (price > 1.00)
             {
                 return -10;
             }
-            else if (price > 0.50)
+            else if (price > 0.75)
             {
                 return -5;
             }
-            else if (price > 0.25)
+            else if (price > 0.50)
             {
                 return 5;
             }

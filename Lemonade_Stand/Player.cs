@@ -8,22 +8,22 @@ namespace Lemonade_Stand
 {
     public class Player
     {
-        public string Name { get; set; }
         public Inventory Inventory { get; set; }
         public Lemonade Lemonade { get; set; }
         public double Money { get; set; }
+        public string Name { get; set; }
 
         public Player(string playerName)
         {
             this.Name = playerName;
             this.Inventory = new Inventory();
             this.Lemonade = new Lemonade();
-            this.Money = 20.00;
+            this.Money = 50.00;
         }
 
         public void DecideIfBuyingItems()
         {
-            string prompt = $"You currently have ${Money}. Do you want to purchase any items? Please select 'yes' or 'no'.";
+            string prompt = $"You now have ${Money}. Do you want to purchase any ingredients? Please select 'yes' or 'no'.";
             string response = UserInterface.GetUserYesOrNo(prompt);
             if (response == "yes")
             {
@@ -46,6 +46,14 @@ namespace Lemonade_Stand
             {
                 switch (itemName)
                 {
+                    case "cup":
+                        price = Cup.price;
+                        items.Add(new Cup());
+                        break;
+                    case "ice":
+                        price = Ice.price;
+                        items.Add(new Ice());
+                        break;
                     case "lemon":
                         price = Lemon.price;
                         items.Add(new Lemon());
@@ -53,14 +61,6 @@ namespace Lemonade_Stand
                     case "sugar":
                         price = Sugar.price;
                         items.Add(new Sugar());
-                        break;
-                    case "ice":
-                        price = Ice.price;
-                        items.Add(new Ice());
-                        break;
-                    case "cup":
-                        price = Cup.price;
-                        items.Add(new Cup());
                         break;
                 }
             }

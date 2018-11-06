@@ -24,7 +24,7 @@ namespace Lemonade_Stand
             Console.WriteLine("RULES");
             Console.WriteLine("----------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine($"Yo! My homie {playerOne.Name}! Your objective is to make as much money as possible by selling ''lemonade'' at your new stand!");
-            Console.WriteLine("1. Pick a 7 day or 30 day game.");
+            Console.WriteLine("1. Pick a 7 day.");
             Console.WriteLine("2. Buy cups, ice, lemons, and sugar at the store to restock your inventory. You start with $100 and zero inventory.");
             Console.WriteLine("3. Make the recipe.");
             Console.WriteLine("4. Set the price.");
@@ -126,9 +126,9 @@ namespace Lemonade_Stand
             }
         }
 
-        public static void DisplayDailyProfit(double profit, int numberOfCupsSold)
+        public static void DisplayDailyProfit(double profit, int cupsSold)
         {
-            Console.WriteLine($"Today, you made ${profit} and sold {numberOfCupsSold} cups.");
+            Console.WriteLine($"Today, you made ${profit} and sold {cupsSold} cups.");
         }
 
         public static void DisplayTotalProfit(double runningTotalProfit, int overallNumberOfCupsSold)
